@@ -1,19 +1,19 @@
 # React Product Filter
 
-Un composant React permettant de filtrer et d'afficher une liste de produits par catégorie. Les utilisateurs peuvent rechercher des produits et filtrer les produits en rupture de stock.
+A React component for filtering and displaying categorized product lists. Users can search products and filter out-of-stock items.
 
-## Description du Repository
-Application React démontrant la gestion d'état et le filtrage de données avec des composants contrôlés. Implémente un cas d'usage classique de filtrage de produits avec une interface utilisateur intuitive.
+## Repository Description
+React application demonstrating state management and data filtering with controlled components. Implements a classic product filtering use case with an intuitive user interface.
 
-## Fonctionnalités
+## Features
 
-- 🔍 Recherche en temps réel de produits
-- ✅ Filtrage des produits en stock/rupture de stock
-- 📊 Affichage organisé par catégories
-- 🎨 Indication visuelle des produits en rupture de stock (texte en rouge)
-- ⚛️ Architecture React moderne avec composants fonctionnels et hooks
+- 🔍 Real-time product search
+- ✅ In-stock/out-of-stock filtering
+- 📊 Category-based display
+- 🎨 Visual indication of out-of-stock products (red text)
+- ⚛️ Modern React architecture with functional components and hooks
 
-## Structure du Projet
+## Project Structure
 
 ```
 src/
@@ -29,77 +29,116 @@ src/
 └── App.jsx
 ```
 
-## Composants
+## Components
 
 ### App.jsx
-Composant principal qui :
-- Maintient l'état global (recherche et filtre de stock)
-- Gère la logique de filtrage des produits
-- Orchestre les composants enfants
+Main component that:
+- Maintains global state (search and stock filter)
+- Handles product filtering logic
+- Orchestrates child components
 
 ### SearchBar
-Barre de recherche composite comprenant :
-- Un champ de recherche (`Input`)
-- Une case à cocher pour filtrer les produits en stock (`CheckBox`)
+Composite search bar including:
+- Search field (`Input`)
+- Checkbox for filtering in-stock products (`CheckBox`)
 
 ### ProductTable
-Table de produits qui :
-- Organise les produits par catégories
-- Affiche les en-têtes de catégories
-- Gère l'affichage des lignes de produits
+Product table that:
+- Organizes products by categories
+- Displays category headers
+- Manages product row display
 
-### Composants Auxiliaires
-- `ProductRow` : Affiche une ligne de produit
-- `ProductCategoryRow` : Affiche l'en-tête d'une catégorie
-- `Input` : Composant de saisie contrôlé
-- `CheckBox` : Composant de case à cocher contrôlé
+### Supporting Components
+- `ProductRow`: Displays a product line
+- `ProductCategoryRow`: Displays a category header
+- `Input`: Controlled input component
+- `CheckBox`: Controlled checkbox component
 
-## État et Flux de Données
+## State and Data Flow
 
-Les états sont gérés au niveau de `App.jsx` :
+States are managed at the `App.jsx` level:
 ```javascript
 const [stockedOnly, setStockedOnly] = useState(false);
 const [search, setSearch] = useState("");
 ```
 
-Le flux de données est unidirectionnel :
-1. L'utilisateur interagit avec `SearchBar`
-2. Les modifications déclenchent les setters d'état
-3. Le nouveau state déclenche un re-rendu
-4. La liste des produits est filtrée selon les critères
-5. `ProductTable` affiche les produits filtrés
+Data flow is unidirectional:
+1. User interacts with `SearchBar`
+2. Changes trigger state setters
+3. New state triggers re-render
+4. Product list is filtered based on criteria
+5. `ProductTable` displays filtered products
 
-## Installation et Utilisation
+## Installation and Usage
 
-1. Clonez le repository
+1. Clone the repository
 ```bash
-git clone [url-du-repo]
+git clone [repository-url]
 ```
 
-2. Installez les dépendances
+2. Install dependencies
 ```bash
 npm install
 ```
 
-3. Lancez l'application
+3. Run the application
 ```bash
 npm run dev
 ```
 
-## Points Techniques Notables
+## Technical Highlights
 
-- Utilisation des Hooks React (`useState`)
-- Composants contrôlés pour les formulaires
-- Props typées avec JSDoc
-- Gestion efficace du filtrage avec `Array.filter()`
-- Structure de composants modulaire et réutilisable
-- Convention de nommage cohérente pour les props et événements
+- React Hooks usage (`useState`)
+- Controlled components for forms
+- JSDoc typed props
+- Efficient filtering using `Array.filter()`
+- Modular and reusable component structure
+- Consistent props and event naming conventions
 
-## Contribution
+## Sample Data Structure
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-1. Fork le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commiter vos changements
-4. Pousser vers la branche
-5. Ouvrir une Pull Request
+```javascript
+const PRODUCTS = [
+    {category: "Fruits", price: "$1", stocked: true, name: "Apple"},
+    {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},
+    {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},
+    // ...
+]
+```
+
+## Component Props
+
+### ProductTable
+```typescript
+interface ProductTableProps {
+    products: Array<{
+        category: string,
+        price: string,
+        stocked: boolean,
+        name: string
+    }>
+}
+```
+
+### SearchBar
+```typescript
+interface SearchBarProps {
+    search: string,
+    onSearchChange: (value: string) => void,
+    stocked: boolean,
+    onStockedOnlyChange: (value: boolean) => void
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please:
+1. Fork the project
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## License
+
+MIT License - feel free to use this code for your own projects.
